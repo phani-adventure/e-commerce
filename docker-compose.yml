@@ -1,6 +1,7 @@
-version: "3.8"
+version: '3'
 services:
   ecomm:
-   image: manju2205/e-commerce:latest
-   ports:
-      -81:80
+    image: ecomm
+    ports:
+      - "80:80"
+     
