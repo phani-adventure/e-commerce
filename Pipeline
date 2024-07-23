@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+    stages {
+        stage("calc") {
+            steps {
+                git url:"$url"
+            }
+        }
+        stage("build") {
+            steps {
+                sh "docker build -t ecomm ."
+            }
+        }
+        stage("tag") {
+            steps {
+                sh "docker tag ecomm manju2205/e-commerce"
+            }
+        }
+        stage("push") {
+            steps {
+                sh 'docker login -u manju2205  -p $pswd'
+                sh 'docker push manju2205/e-commerce'
+            }
+        }
+        stage("deploy") {
+            steps {
+                sh "docker stack deploy -c docker-compose.yml ecomm "
+            }
+        }
+    }
+}
