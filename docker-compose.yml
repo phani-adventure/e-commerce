@@ -3,5 +3,6 @@ services:
   ecomm:
     image: ecomm
     ports:
-      - "80:80"
-     
+      - "81:80"
+    deploy:
+      replicas: 3
